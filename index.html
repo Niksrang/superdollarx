@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
       --background: 240 52% 36%;
@@ -19,8 +19,7 @@
       --accent: 45 65% 52%;
       --border: 240 52% 40%;
     }
-    body
-    {
+    body {
       font-family: 'Inter', sans-serif;
       background-color: hsl(var(--background));
       color: hsl(var(--foreground));
@@ -45,7 +44,7 @@
     .text-primary-foreground { color: hsl(var(--primary-foreground)); }
     .from-red-500 { --tw-gradient-from: #ef4444; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(239 68 68 / 0)); }
     .via-red-600 { --tw-gradient-stops: var(--tw-gradient-from), #dc2626, var(--tw-gradient-to, rgb(220 38 38 / 0)); }
-    .to-red-700 { --tw-gradient-to: #b91c1c; }
+    to-red-700 { --tw-gradient-to: #b91c1c; }
 
     @keyframes shine {
       0% { transform: translateX(-100%); }
@@ -139,6 +138,8 @@
 
   <script>
     // --- DRAW LOGIC (from draw-logic.js) ---
+    const customResults = {};
+
     function seededRandom(seed) {
       const x = Math.sin(seed) * 10000;
       return x - Math.floor(x);
@@ -147,83 +148,120 @@
     function getDrawData(referenceDate) {
       const now = referenceDate;
       const hours = now.getHours();
-      const START_HOUR = 7;
-      const END_HOUR = 21;
+
+      const START_HOUR = 7; // 7:00 AM
+      const END_HOUR = 20;  // 8:00 PM
+
       const nextDraw = new Date(now);
       nextDraw.setSeconds(0, 0);
 
+      // If time is outside of draw hours completely, draws are closed.
       if (hours < START_HOUR || hours >= END_HOUR) {
         if (hours >= END_HOUR) {
           nextDraw.setDate(nextDraw.getDate() + 1);
         }
         nextDraw.setHours(START_HOUR, 0);
-        return { isDrawOpen: false, currentNumber: null, drawTime: null, nextDrawTime: nextDraw };
+        return {
+          isDrawOpen: false,
+          currentNumber: null,
+          drawTime: null,
+          nextDrawTime: nextDraw,
+        };
       }
 
+      // Determine the current draw window's start time.
       const drawTime = new Date(now);
       const minutes = drawTime.getMinutes();
       drawTime.setMinutes(minutes < 30 ? 0 : 30, 0, 0);
+      
+      // Get the result for the current draw window.
+      const timeKey = `${drawTime.getHours().toString().padStart(2, '0')}:${drawTime.getMinutes().toString().padStart(2, '0')}`;
+      const customResult = customResults[timeKey];
+      
+      let formattedNumber;
+      if (customResult) {
+        formattedNumber = customResult;
+      } else {
+        const seed = drawTime.getTime();
+        const randomNumber = Math.floor(seededRandom(seed) * 100);
+        formattedNumber = randomNumber.toString().padStart(2, '0');
+      }
+
+      // Determine the next draw's start time.
       const nextDrawTime = new Date(drawTime);
       nextDrawTime.setMinutes(nextDrawTime.getMinutes() + 30);
 
+      // If the next draw is after the end hour, the next draw is tomorrow.
       if (nextDrawTime.getHours() >= END_HOUR) {
-        const tomorrowDraw = new Date(now);
-        tomorrowDraw.setDate(tomorrowDraw.getDate() + 1);
-        tomorrowDraw.setHours(START_HOUR, 0, 0, 0);
-        return { isDrawOpen: false, currentNumber: null, drawTime: null, nextDrawTime: tomorrowDraw };
+          const tomorrowDraw = new Date(now);
+          tomorrowDraw.setDate(tomorrowDraw.getDate() + 1);
+          tomorrowDraw.setHours(START_HOUR, 0, 0, 0);
+          return {
+              isDrawOpen: true, // Still show the result for the last draw window of the day
+              currentNumber: formattedNumber,
+              drawTime: drawTime,
+              nextDrawTime: tomorrowDraw,
+          };
       }
 
-      const seed = drawTime.getTime();
-      const randomNumber = Math.floor(seededRandom(seed) * 100);
-      const formattedNumber = randomNumber.toString().padStart(2, '0');
-      return { isDrawOpen: true, currentNumber: formattedNumber, drawTime, nextDrawTime };
+      // Standard case: draws are open, and the next draw is today.
+      return {
+        isDrawOpen: true,
+        currentNumber: formattedNumber,
+        drawTime,
+        nextDrawTime,
+      };
     }
 
     function getPreviousDraws(referenceDate) {
-      const draws = [];
       const now = new Date(referenceDate);
+
+      // Don't show previous results after 8 PM.
+      if (now.getHours() >= 20) {
+        return [];
+      }
+      
+      const draws = [];
       const isSameDay = (d1, d2) => d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
-      if (now.getHours() < 7) return [];
       
       const currentDrawData = getDrawData(now);
       let drawIterator;
 
-      // Determine the starting point for iteration.
+      // This block determines the starting point for iterating backwards.
       if (currentDrawData.drawTime && isSameDay(currentDrawData.drawTime, now)) {
-        // If there's a current draw, start from its time.
+        // If there's an active draw, start iterating from its time.
         drawIterator = new Date(currentDrawData.drawTime);
       } else {
-        // If draws are closed for the day, start from the last possible draw time.
+        // Between draw windows during the day (but before 8pm).
         const tempDate = new Date(now);
-        if (now.getHours() >= 21) {
-            // If it's past 9 PM, the last draw was at 8:30 PM.
-            tempDate.setHours(20, 30, 0, 0);
-        } else {
-            // If it's before 7 AM, this case is handled by the early return.
-            // For other times, find the most recent draw slot.
-            const minutes = tempDate.getMinutes();
-            tempDate.setMinutes(minutes < 30 ? 0 : 30, 0, 0);
-        }
+        const minutes = tempDate.getMinutes();
+        tempDate.setMinutes(minutes < 30 ? 0 : 30, 0, 0);
         drawIterator = tempDate;
       }
       
       // If the current time is exactly a draw time (e.g., 10:00:00),
-      // the `getDrawData` for the *current* time shows the 10:00 draw.
-      // But we want the *previous* results. So, we step back one draw.
+      // getDrawData shows the 10:00 draw. We want previous results,
+      // so we need to step back one full draw period to start from 9:30.
       if (currentDrawData.drawTime && now.getTime() === currentDrawData.drawTime.getTime()) {
         drawIterator.setMinutes(drawIterator.getMinutes() - 30);
       }
 
+      // Iterate backwards through the day's draws.
       while (drawIterator.getHours() >= 7 && isSameDay(drawIterator, now)) {
+        // We need to get data for a time *within* the draw window, not at the exact start.
         const refForLogic = new Date(drawIterator);
-        // Use a time within the draw window to get correct data
         refForLogic.setMinutes(refForLogic.getMinutes() + 1);
+
         const drawData = getDrawData(refForLogic);
+
         if (drawData.isDrawOpen && drawData.currentNumber && drawData.drawTime) {
+          // Avoid duplicates if logic somehow overlaps
           if (!draws.some(d => d.drawTime.getTime() === drawData.drawTime.getTime())) {
             draws.push({ drawTime: drawData.drawTime, currentNumber: drawData.currentNumber });
           }
         }
+        
+        // Move to the previous 30-minute slot.
         drawIterator.setMinutes(drawIterator.getMinutes() - 30);
       }
       return draws;
@@ -295,6 +333,11 @@
               `;
               previousResultsListEl.appendChild(li);
             });
+        } else {
+            const li = document.createElement('li');
+            li.className = 'text-center text-foreground/70 pt-4';
+            li.textContent = 'No previous draws to show.';
+            previousResultsListEl.appendChild(li);
         }
 
 
@@ -337,8 +380,8 @@
       }, secondsToNextHalfHour * 1000);
     });
   </script>
-
-<!-- BANNER ADS HERE -->
+  
+  <!-- BANNER ADS HERE -->
   <script>
   atOptions = {
     'key' : '7cf115fe302dfcd2756ae30f31bd7d7a',
@@ -349,5 +392,6 @@
   };
 </script>
 <script src="https://keyholedingy.com/7cf115fe302dfcd2756ae30f31bd7d7a/invoke.js"></script>
+
 </body>
 </html>
