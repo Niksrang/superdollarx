@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Super Dollar X</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: 240 52% 36%;
+      --foreground: 0 0% 98%;
+      --card: 240 64% 27%;
+      --card-foreground: 0 0% 98%;
+      --primary: 45 65% 52%;
+      --primary-foreground: 240 64% 27%;
+      --accent: 45 65% 52%;
+      --border: 240 52% 40%;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+    }
+    .font-headline {
+      font-family: 'Poppins', sans-serif;
+    }
+    .bg-background { background-color: hsl(var(--background)); }
+    .text-foreground { color: hsl(var(--foreground)); }
+    .text-foreground\/80 { color: hsla(var(--foreground), 0.8); }
+    .bg-card { background-color: hsl(var(--card)); }
+    .text-accent { color: hsl(var(--accent)); }
+    .text-yellow-400 { color: #FBBF24; }
+    .list-disc { list-style-type: disc; }
+    .list-inside { list-style-position: inside; }
+  </style>
+</head>
+<body class="antialiased">
+  <main class="flex min-h-screen flex-col items-center bg-background p-4 sm:p-8 md:p-12 font-body text-foreground">
+    <div class="w-full max-w-2xl mx-auto">
+      <header class="mb-8 md:mb-12 text-center">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-headline font-bold text-yellow-400 mb-2 tracking-tight">
+          Privacy Policy
+        </h1>
+      </header>
+      <div class="bg-card rounded-xl shadow-lg p-6 md:p-8 space-y-6 text-left text-foreground/90">
+        <h2 class="text-2xl font-bold font-headline text-accent">1. Information We Do Not Collect</h2>
+        <p>SuperdollarX does not collect, store, or process any personal information from visitors. We do not collect:</p>
+        <ul class="list-disc list-inside space-y-1 pl-4">
+            <li>Names</li>
+            <li>Email addresses</li>
+            <li>Phone numbers</li>
+            <li>Login details</li>
+            <li>Payment information</li>
+            <li>Location data</li>
+        </ul>
+        <p>We also do not require users to register or provide any personal details to use our website.</p>
+
+        <h2 class="text-2xl font-bold font-headline text-accent">2. Automatic Data Collection</h2>
+        <p>Our website does not intentionally collect visitor data. However, basic technical data (such as IP address, browser type, or device information) may be automatically processed by third-party services like hosting providers or advertising partners. We have no direct control over this data.</p>
+        
+        <h2 class="text-2xl font-bold font-headline text-accent">3. Cookies</h2>
+        <p>SuperdollarX does not use cookies directly. Third-party services (such as advertising networks) may use cookies or similar technologies to display advertisements. These cookies are managed entirely by third parties, and we do not have access to or control over them.</p>
+      </div>
+      <footer class="mt-12 text-center">
+        <a href="index.html" class="text-accent hover:underline">Back to Home</a>
+      </footer>
+    </div>
+    <script>
+        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+</html>
