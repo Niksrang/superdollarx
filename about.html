@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Super Dollar X</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: 240 52% 36%;
+      --foreground: 0 0% 98%;
+      --card: 240 64% 27%;
+      --card-foreground: 0 0% 98%;
+      --primary: 45 65% 52%;
+      --primary-foreground: 240 64% 27%;
+      --accent: 45 65% 52%;
+      --border: 240 52% 40%;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+    }
+    .font-headline {
+      font-family: 'Poppins', sans-serif;
+    }
+    .bg-background { background-color: hsl(var(--background)); }
+    .text-foreground { color: hsl(var(--foreground)); }
+    .text-foreground\/80 { color: hsla(var(--foreground), 0.8); }
+    .bg-card { background-color: hsl(var(--card)); }
+    .text-accent { color: hsl(var(--accent)); }
+    .text-yellow-400 { color: #FBBF24; }
+    .list-disc { list-style-type: disc; }
+    .list-inside { list-style-position: inside; }
+  </style>
+</head>
+<body class="antialiased">
+  <main class="flex min-h-screen flex-col items-center bg-background p-4 sm:p-8 md:p-12 font-body text-foreground">
+    <div class="w-full max-w-2xl mx-auto">
+      <header class="mb-8 md:mb-12 text-center">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-headline font-bold text-yellow-400 mb-2 tracking-tight">
+          About Us
+        </h1>
+      </header>
+      <div class="bg-card rounded-xl shadow-lg p-6 md:p-8 space-y-6 text-left text-foreground/90">
+          <p>SuperdollarX is a simple and reliable random number generator website designed for users who need fair and unbiased numbers without any complexity.</p>
+          <p>Our website automatically generates random numbers from 00 to 99 every 30 minutes. The generated numbers are the same for all visitors, ensuring transparency and consistency.</p>
+          
+          <h2 class="text-2xl font-bold font-headline text-accent pt-2">Our Purpose</h2>
+          <p>The goal of SuperdollarX is to provide:</p>
+          <ul class="list-disc list-inside space-y-2 pl-4">
+            <li>A fast and easy-to-use random number generator</li>
+            <li>Equal results for all visitors</li>
+            <li>A clean, mobile-friendly experience</li>
+            <li>No registration or personal data collection</li>
+          </ul>
+          <p>This tool can be useful for games, learning purposes, demonstrations, testing, and other general randomization needs.</p>
+        
+          <h2 class="text-2xl font-bold font-headline text-accent pt-2">How It Works</h2>
+          <ul class="list-disc list-inside space-y-2 pl-4">
+            <li>Numbers are generated automatically</li>
+            <li>No user input is required</li>
+            <li>The system refreshes every 30 minutes</li>
+            <li>Results are not influenced by visitors or traffic</li>
+            <li>The process is fully automated</li>
+            <li>We do not manipulate or customize results for individual users.</li>
+          </ul>
+      </div>
+      <footer class="mt-12 text-center">
+        <a href="index.html" class="text-accent hover:underline">Back to Home</a>
+      </footer>
+    </div>
+</body>
+</html>
