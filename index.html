@@ -25,14 +25,6 @@
       color: hsl(var(--foreground));
     }
     
-.fixed-ad {
-  position: fixed;
-  left: 10px;          /* distance from left */
-  top: 50%;            /* center vertically */
-  transform: translateY(-50%);
-  z-index: 9999;
-}
-
     .font-headline {
       font-family: 'Poppins', sans-serif;
     }
@@ -90,22 +82,6 @@
           </div>
         </div>
       </header>
-
-<!---NATIVE BANNER ADS HERE--->
-<div class="fixed-ad">
-  <script>
-  atOptions = {
-    'key' : '7cf115fe302dfcd2756ae30f31bd7d7a',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script src="https://keyholedingy.com/7cf115fe302dfcd2756ae30f31bd7d7a/invoke.js"></script>
-
-</div>
-      
       <div class="w-full flex flex-col items-center gap-6">
         <div class="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center bg-card rounded-full shadow-2xl border-4 border-accent">
           <div id="current-number-container" class="text-8xl md:text-9xl font-bold font-headline text-accent tracking-tighter">
@@ -404,8 +380,19 @@
     });
   </script>
   
-  <!-- BANNER ADS HERE -->
-<script async="async" data-cfasync="false" src="https://keyholedingy.com/385d2d553108ca99318355e91640f3b3/invoke.js"></script>
-<div id="container-385d2d553108ca99318355e91640f3b3"></div>
+<!---BANNER ADS HERE--->
+<div class="fixed-ad">
+  <script>
+  atOptions = {
+    'key' : '7cf115fe302dfcd2756ae30f31bd7d7a',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://keyholedingy.com/7cf115fe302dfcd2756ae30f31bd7d7a/invoke.js"></script>
+</div>
+
 </body>
 </html>
