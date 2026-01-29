@@ -24,7 +24,6 @@
       background-color: hsl(var(--background));
       color: hsl(var(--foreground));
     }
-    
     .font-headline {
       font-family: 'Poppins', sans-serif;
     }
@@ -82,6 +81,7 @@
           </div>
         </div>
       </header>
+      
       <div class="w-full flex flex-col items-center gap-6">
         <div class="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center bg-card rounded-full shadow-2xl border-4 border-accent">
           <div id="current-number-container" class="text-8xl md:text-9xl font-bold font-headline text-accent tracking-tighter">
@@ -107,6 +107,7 @@
           </p>
         </div>
       </div>
+
       <div class="mt-12 w-full max-w-md mx-auto bg-card rounded-xl shadow-lg p-6">
         <div id="previous-results-trigger" class="flex justify-between items-center cursor-pointer">
           <h2 class="text-2xl font-bold font-headline text-accent">Previous Results</h2>
@@ -137,7 +138,35 @@
 
   <script>
     // --- DRAW LOGIC (from draw-logic.js) ---
-    const customResults = {};
+    const customResults = {
+      '07:00': '06',
+      '07:30': '76',
+      '08:00': '05',
+      '08:30': '23',
+      '09:00': '33',
+      '09:30': '07',
+      '10:00': '75x4',
+      '10:30': '80',
+      '11:00': '55',
+      '11:30': '10x3',
+      '12:00': '40',
+      '12:30': '66',
+      '13:00': '07',
+      '13:30': '00',
+      '14:00': '44',
+      '14:30': '86',
+      '15:00': '74',
+      '15:30': '95',
+      '16:00': '40',
+      '16:30': '75',
+      '17:00': '13',
+      '17:30': '60x10',
+      '18:00': '06',
+      '18:30': '00',
+      '19:00': '11',
+      '19:30': '26',
+      '20:00': '36',
+    };
 
     function seededRandom(seed) {
       const x = Math.sin(seed) * 10000;
@@ -380,8 +409,7 @@
     });
   </script>
   
-<!---BANNER ADS HERE--->
-<div class="fixed-ad">
+  <!-- BANNER ADS HERE -->
   <script>
   atOptions = {
     'key' : '7cf115fe302dfcd2756ae30f31bd7d7a',
@@ -392,7 +420,6 @@
   };
 </script>
 <script src="https://keyholedingy.com/7cf115fe302dfcd2756ae30f31bd7d7a/invoke.js"></script>
-</div>
 
 </body>
 </html>
