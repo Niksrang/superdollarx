@@ -7,7 +7,7 @@
 
 <link rel="icon" href="/favicon.png" type="image/png">
 
-  <meta name="description" content="Try your luck with Super Dollar X! Instant random number draws, jackpot multipliers, and a smooth. Fast, simple, and reliable.">
+ <meta name="description" content="Try your luck with your preferred numbers! Super Dollar X! Instant random number draws, jackpot multipliers, and a smooth. Fast, simple, and reliable.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
@@ -142,35 +142,7 @@
 
   <script>
     // --- DRAW LOGIC (from draw-logic.js) ---
-    const customResults = {
-      '07:00': '01',
-      '07:30': '78',
-      '08:00': '56',
-      '08:30': '54',
-      '09:00': '45',
-      '09:30': '92',
-      '10:00': '19',
-      '10:30': '79',
-      '11:00': '46',
-      '11:30': '09x3',
-      '12:00': '21',
-      '12:30': '78',
-      '13:00': '90',
-      '13:30': '08',
-      '14:00': '88',
-      '14:30': '44',
-      '15:00': '12',
-      '15:30': '13',
-      '16:00': '59',
-      '16:30': '96',
-      '17:00': '47',
-      '17:30': '31',
-      '18:00': '52',
-      '18:30': '85',
-      '19:00': '98',
-      '19:30': '73',
-      '20:00': '21',
-    };
+    const customResults = {};
 
     function seededRandom(seed) {
       const x = Math.sin(seed) * 10000;
