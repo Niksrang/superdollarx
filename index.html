@@ -8,6 +8,7 @@
 <link rel="icon" href="/favicon.png" type="image/png">
 
  <meta name="description" content="Try your luck with your preferred numbers! Super Dollar X! Instant random number draws, jackpot multipliers, and a smooth. Fast, simple, and reliable.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
@@ -81,7 +82,7 @@
             <div class="relative overflow-hidden text-xs font-bold text-primary-foreground tracking-wider p-2 rounded-lg bg-gradient-to-r from-red-500 via-red-600 to-red-700 shadow-md before:absolute before:inset-0 before:-translate-x-full before:animate-[shine_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">20x</div>
             <div class="relative overflow-hidden text-xs font-bold text-primary-foreground tracking-wider p-2 rounded-lg bg-gradient-to-r from-red-500 via-red-600 to-red-700 shadow-md before:absolute before:inset-0 before:-translate-x-full before:animate-[shine_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">30x</div>
             <div class="relative overflow-hidden text-xs font-bold text-primary-foreground tracking-wider p-2 rounded-lg bg-gradient-to-r from-red-500 via-red-600 to-red-700 shadow-md before:absolute before:inset-0 before:-translate-x-full before:animate-[shine_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">50x</div>
-            <div class="relative overflow-hidden text-xs font-bold text-primary-foreground tracking-wider p-2 rounded-lg bg-gradient-to-r from-red-500 via-red-600 to-red-700 shadow-md before:absolute before:inset-0 before:-translate-x-full before:animate-[shine_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">100x</div>
+            <div class="relative overflow-hidden text-xs font-bold text-primary-foreground tracking-wider p-2 rounded-lg bg-gradient-to-r from-red-500 via-red-600 to-red-700 shadow-md before:absolute before:inset-0 before:-translate-x-full before:animate-[shine_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-.white/50 before:to-transparent">100x</div>
           </div>
         </div>
       </header>
@@ -142,7 +143,35 @@
 
   <script>
     // --- DRAW LOGIC (from draw-logic.js) ---
-    const customResults = {};
+     const customResults = {
+    '07:00':'23',
+    '07:30': '61',
+    '08:00': '56',
+    '08:30': '07',
+    '09:00': '42',
+    '09:30': '69',
+    '10:00': '24',
+    '10:30': '12',
+    '11:00': '94',
+    '11:30': '31',
+    '12:00': '04',
+    '12:30': '62',
+    '13:00': '70',
+    '13:30': '46',
+    '14:00': '62',
+    '14:30': '34',
+    '15:00': '43',
+    '15:30': '12',
+    '16:00': '85',
+    '16:30': '96',
+    '17:00': '05',
+    '17:30': '25',
+    '18:00': '09',
+    '18:30':'73',
+    '19:00':'89',
+    '19:30':'06',
+    '20:00':'57',
+  };
 
     function seededRandom(seed) {
       const x = Math.sin(seed) * 10000;
@@ -154,7 +183,7 @@
       const hours = now.getHours();
 
       const START_HOUR = 7; // 7:00 AM
-      const END_HOUR = 20;  // 8:30 PM
+      const END_HOUR = 20;  // 8:00 PM
 
       const nextDraw = new Date(now);
       nextDraw.setSeconds(0, 0);
@@ -384,7 +413,6 @@
       }, secondsToNextHalfHour * 1000);
     });
   </script>
-  
   <!-- BANNER ADS HERE -->
   <script>
   atOptions = {
@@ -396,6 +424,5 @@
   };
 </script>
 <script src="https://keyholedingy.com/7cf115fe302dfcd2756ae30f31bd7d7a/invoke.js"></script>
-
 </body>
-  </html>
+</html>
